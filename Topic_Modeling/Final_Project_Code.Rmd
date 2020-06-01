@@ -1,0 +1,340 @@
+---
+title: "Final Project"
+output: html_document
+---
+
+```{r libraries, echo=FALSE}
+
+library('devtools')
+library(tm)
+library(quanteda)
+library(quanteda.corpora)
+library(readtext)
+library(dplyr)
+library(ngram)
+library(tidyverse)
+libraries <- c("ldatuning", "topicmodels", "ggplot2", "dplyr", "rjson", "lubridate", "parallel", "doParallel", "tidytext", "stringi", "tidyr", "stm")
+lapply(libraries, require, character.only = TRUE)
+library(textir)
+library(Rtsne)
+library(rsvd)
+library(geometry)
+library(factoextra)
+library(text2vec)
+library(lsa)
+library(bursts)
+#library("quanteda.textmodels")
+```
+
+
+# Load Data, Column Configurations, General Statistics
+```{r reading_data, echo=TRUE}
+
+#Load data
+blogs <- read.csv(file = 'trimmed_blogs.csv')
+
+#remove unwanted columns 
+drops <- c("X","Unnamed..0","Unnamed..0.1","id","topic","sign")
+blogs <- blogs[ , !(names(blogs) %in% drops)]
+
+#lets categorize age data 
+blogs$"age_category" <- "Not in Range" 
+blogs[which(blogs[,'age'] %in% 13:17),"age_category"] <- "13-17"
+blogs[which(blogs[,'age'] %in% 23:27),"age_category"] <- "23-27"
+
+#47 records unaccounted for all have the age 48 so extended the category
+blogs[which(blogs[,'age'] %in% 33:48),"age_category"] <- "33-48" 
+
+prop.table(table(blogs$gender))
+prop.table(table(blogs$age_category))  
+
+```
+
+#Data cleaning, Create DFM
+```{r creating_dfm, echo=TRUE}
+
+blogs$text <- as.character(blogs$text)
+blog_corpus <- corpus(blogs)
+
+seo_stopwords <- read.csv("seo_stopwords.csv", header=FALSE)
+seo_stopwords <- seo_stopwords$V1
+
+#stemming is FALSE as it is typically not done when using Topic Models 
+blogs_dfm <- dfm(blog_corpus, remove_punct = TRUE, tolower = TRUE, remove_numbers = TRUE, stem = FALSE, remove = seo_stopwords)
+
+#trimming document based on guideline proprortions of the number of documents to minimum freq in HW3  
+blogs_dfm <- dfm_trim(blogs_dfm, min_termfreq = (30/1759)*nrow(blogs), min_docfreq = (20/1759)*nrow(blogs))
+
+#remove empty rows 
+empty_rows <- dfm_subset(blogs_dfm, ntoken(blogs_dfm) == 0)
+blogs_dfm <- dfm_subset(blogs_dfm, ntoken(blogs_dfm) > 0)
+
+length(blogs_dfm)
+#for (i in 1:ndoc(blogs_dfm)){
+  #if (sum(blogs_dfm[i,])<1){print(i)}
+#}
+
+```
+
+### Topic Models
+```{r topic_model, echo=TRUE}
+#Choosing k 
+
+logLik_list <- vector()
+
+#lets choose the best k based upon which has the highest log like-likelihood
+for (k in 2:3){
+blogs_tm <- LDA(blogs_dfm, k = k, method = "Gibbs", iter=3000,  control = list(seed = 1234))
+print(logLik(blogs_tm, newdata = blogs_dfm))
+logLik_list <- c(logLik_list,logLik(blogs_tm, newdata = blogs_dfm))
+}
+
+highest_logLik <- which.max(logLik_list) + 1
+system.time(blogs_tm <- LDA(blogs_dfm, k = highest_logLik, method = "Gibbs", iter=3000,  control = list(seed = 1234)))
+
+```
+
+#Top terms per topic 
+```{r creating_data_frame, echo=TRUE}
+top_terms <- get_terms(blogs_tm, 5)
+save(top_terms, file='top_terms.rdata')
+top_terms
+```
+
+
+#Most important topics according to number of documents its most likely the topic 
+```{r, echo=TRUE}
+
+topic_preds <- as.data.frame(topics(blogs_tm))
+colnames(topic_preds) <- 'topic'
+doc_count <- vector()
+
+#retrieve document count for each topic 
+for (i in 1:highest_logLik){
+  topic_query <- topic_preds[which(topic_preds$topic==i),]
+  doc_count <- c(doc_count, length(topic_query))
+}
+
+topics_df <- data.frame(topic = 1:highest_logLik, doc_count=doc_count)
+topics_df <- topics_df[order(topics_df$doc_count, decreasing = TRUE),]
+
+print( as.table(as.matrix(topics_df)))  
+
+```
+
+
+## Average contribution of a topic to an age group - gender combination 
+```{r, echo= TRUE}
+
+topic_dist <- tidy(blogs_tm, matrix = 'gamma')
+
+avg_topic_amts <- function(idx){
+  #Topic distributions for just that specific newspaper
+  topic_dist <- tidy(blogs_tm, matrix = 'gamma')[which(topic_dist$document %in% idx),]
+  avg_per_topic <- vector()
+  
+  #Find averages of top topic distributions
+  for (i in c(1,3,2)){
+    curr_topic <- topic_dist[which(topic_dist[,'topic']==i),]
+    
+    count <- nrow(curr_topic)
+    if (count != 0){avg_per_topic <- c(avg_per_topic, sum(curr_topic$gamma)/count ) }
+    else{avg_per_topic <- c(avg_per_topic, 0)}
+  }
+  
+  return(avg_per_topic)
+}
+
+#By Gender
+male_indices <- c(unlist(rownames(blog_corpus$documents[which(blog_corpus$documents$gender == 'male'),])))
+female_indices <- c(unlist(rownames(blog_corpus$documents[which(blog_corpus$documents$gender == 'female'),])))
+male_avgs <- avg_topic_amts(male_indices)
+female_avgs <- avg_topic_amts(female_indices)
+
+#By Age Group 
+teens_idx <- c(unlist(rownames(blog_corpus$documents[which(blog_corpus$documents$age_category == '13-17'),])))
+twenties_idx <- c(unlist(rownames(blog_corpus$documents[which(blog_corpus$documents$age_category == "23-27"),])))
+thirtyplus_idx <- c(unlist(rownames(blog_corpus$documents[which(blog_corpus$documents$age_category == "33-48"),])))
+
+teens_avgs <- avg_topic_amts(teens_idx)
+twenties_avgs <- avg_topic_amts(twenties_idx)
+thirtyplus_avgs <- avg_topic_amts(thirtyplus_idx)
+  
+topic_contributions_by_gender <- t(data.frame(topic=c('Topic 1','Topic 3', 'Topic 2'), male=male_avgs, female=female_avgs))
+topic_contributions_by_age <- t(data.frame(topic=c('Topic 1','Topic 3', 'Topic 2'), teens=teens_avgs, twenties=twenties_avgs, thirtyplus = thirtyplus_avgs))
+
+print(data.frame(topic_contributions_by_gender))
+print(data.frame(topic_contributions_by_age))
+
+```
+
+
+### PCA for LDA Topic Model 
+```{r PCA, echo=TRUE}
+#remove empty rows from original blog corpus
+blog_docs <- blog_corpus$documents[!(rownames(blog_corpus$documents) %in% rownames(empty_rows)),]
+
+dataframes <- vector()
+
+#Create document-topic matrix 
+for (i in 1:highest_logLik){
+  if (i == 1){ topic_matrix <- topic_dist[which(topic_dist[,'topic']==i),] }
+  
+  else { 
+    new_column <- paste("topic",toString(i),sep = " ") 
+    topic_matrix[,new_column] <- topic_dist[which(topic_dist[,'topic']==i),]$gamma 
+  }
+}
+
+topic_matrix <- topic_matrix[,!(colnames(topic_matrix) %in% ('topic'))]
+colnames(topic_matrix)[2] <- 'topic 1'
+
+
+View(topic_matrix)
+
+
+```
+
+
+#Structural Topic Models 
+
+#Create STM 
+```{r STM, echo=TRUE}
+
+covariate_dfm <- dfm(blog_corpus, remove_punct = TRUE, remove_numbers = TRUE, stem=FALSE, tolower = TRUE, remove = seo_stopwords)
+covariate_dfm <-  dfm_trim(covariate_dfm, min_termfreq = (30/1759)*nrow(blogs), min_docfreq = (20/1759)*nrow(blogs))
+
+#remove empty rows
+covariate_dfm <- dfm_subset(covariate_dfm, ntoken(blogs_dfm) > 0)
+
+stm_corpus <- asSTMCorpus(covariate_dfm)
+documents <- stm_corpus$documents
+vocab <- stm_corpus$vocab
+meta_data <- stm_corpus$data
+
+system.time(stm_model <- stm(documents, vocab, K=0, prevalence = ~meta_data$gender + meta_data$age_category, data = meta_data, init.type="Spectral", verbose = FALSE, seed=1234))
+
+topic_count <- nrow(as.data.frame(stm_model$beta))
+print(topic_count)
+```
+
+# Top topics that occur in the highest proportions of documents 
+```{r}
+
+get_highestSTM <- function(stm,topic_count){
+  theta_df <- as.data.frame(stm$theta)
+  blog_docs <- blog_corpus$documents[!(rownames(blog_corpus$documents) %in% rownames(empty_rows)),]
+  doc_count <- nrow(blog_docs)
+
+  top_topics <- vector()
+  for (i in 1:doc_count){top_topics <- c(top_topics, which.max(theta_df[i,]))}
+
+  top_topics <- summary(as.factor(top_topics))
+  most_freq_topics <- data.frame(topic=1:topic_count, doc_count=top_topics)
+  most_freq_topics <- most_freq_topics[order(most_freq_topics$doc_count, decreasing = TRUE),]
+
+  highest_topics <- most_freq_topics[1:5,'topic']
+
+  beta <- as.data.frame(stm$beta)
+
+  for (i in highest_topics){
+    idx <- which.max(beta[i,])
+    print(vocab[idx])
+}
+
+plot(stm_model, type = "summary", topics=highest_topics)
+  
+  
+}
+
+get_highestSTM(stm_model,topic_count)
+
+
+```
+
+
+# How does he content vary with the paper discussing that topic ? 
+```{r, echo=TRUE}
+
+gender <- meta_data$gender
+age_category <- meta_data$age_category
+meta <- meta_data[,c("gender","age_category")]
+prep <- estimateEffect( ~ gender + age_category , stm_model,meta = meta)
+
+
+plot.estimateEffect(prep, "gender", model = stm_model, topics = 8,
+     method = "difference", cov.value1 = "male", cov.value2 = "female")
+
+plot.estimateEffect(prep, "age_category", model = stm_model, topics = 8,
+     method = "difference", cov.value1 = "13-17", cov.value2 = "23-27")
+
+plot.estimateEffect(prep, "age_category", model = stm_model, topics = 8,
+     method = "difference", cov.value1 = "33-48", cov.value2 = "13-17")
+
+plot.estimateEffect(prep, "age_category", model = stm_model, topics = 8,
+     method = "difference", cov.value1 = "33-48", cov.value2 = "23-27")
+
+
+```
+
+
+#Continuous Scale for Age 
+```{r, echo=TRUE}
+
+system.time(stm_model2 <- stm(documents, vocab, K=0, prevalence = ~meta_data$gender + meta_data$age, data = meta_data, init.type="Spectral", verbose = FALSE, seed=1234))
+topic_count <- nrow(as.data.frame(stm_model2$beta))
+get_highestSTM(stm_model2,topic_count)
+
+
+```
+
+
+```{r,echo=TRUE}
+
+age <- meta_data$age_category
+meta <- meta_data[,c("gender","age")]
+prep <- estimateEffect( ~ gender + age , stm_model2,meta = meta)
+
+plot.estimateEffect(prep, "age", model = stm_model2, topics = 8,
+     method = "continuous")
+
+```
+
+#PCA for STM 
+```{r}
+# Note: rownames(meta_data) - contains the text that corresponds to each document  
+#document-topic matrix
+topic_matrix_stm <- stm_model2$theta
+View(topic_matrix_stm)
+
+
+
+```
+
+The following cell writes the csv neccessary for pca
+```{r}
+topic_dist <- tidy(blogs_tm, matrix = 'gamma')
+
+length_tidy <- nrow(topic_dist)
+print(length_tidy)
+num_topics <- 3
+
+print(length_tidy/num_topics)
+
+doc_topics <- vector()
+for (doc in topic_dist$document[1:(length_tidy/num_topics)]){
+  this_doc <- topic_dist[which(topic_dist$document==doc),]
+  this_topic <- which.max(this_doc$gamma)
+  doc_topics <- c(doc_topics, this_topic)
+}
+
+print(length(doc_topics))
+
+blog_df <- convert(blogs_dfm, to='data.frame')
+blog_df$topic <- doc_topics
+write.csv(blog_df,"for_pca.csv")
+```
+
+
+
+
