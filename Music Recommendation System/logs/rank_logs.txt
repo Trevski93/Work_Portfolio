@@ -1,0 +1,194 @@
+distinct_users
+finished writing in 166 seconds
+labels
+finished writing in 171 seconds
+predictions
+finished writing in 171 seconds
+predictionsAndLabels
+finished writing in 182 seconds
+finished writing in 1318 seconds
+1710.7197310775518
+distinct_users
+finished writing in 57 seconds
+labels
+finished writing in 63 seconds
+predictions
+finished writing in 64 seconds
+predictionsAndLabels
+finished writing in 74 seconds
+finished writing in 1000 seconds
+1117.3318371716887
+distinct_users
+finished writing in 76 seconds
+labels
+finished writing in 84 seconds
+predictions
+finished writing in 85 seconds
+predictionsAndLabels
+finished writing in 93 seconds
+finished writing in 1703 seconds
+2343.918119398877
+distinct_users
+finished writing in 78 seconds
+labels
+finished writing in 90 seconds
+predictions
+finished writing in 90 seconds
+predictionsAndLabels
+finished writing in 99 seconds
+finished writing in 2050 seconds
+2168.085085723549
+Traceback (most recent call last):
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/sql/utils.py", line 63, in deco
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/protocol.py", line 328, in get_return_value
+py4j.protocol.Py4JJavaError: An error occurred while calling o44.load.
+: org.apache.spark.sql.AnalysisException: Unable to infer schema for Parquet. It must be specified manually.;
+	at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$7.apply(DataSource.scala:185)
+	at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$7.apply(DataSource.scala:185)
+	at scala.Option.getOrElse(Option.scala:121)
+	at org.apache.spark.sql.execution.datasources.DataSource.getOrInferFileFormatSchema(DataSource.scala:184)
+	at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:373)
+	at org.apache.spark.sql.DataFrameReader.loadV1Source(DataFrameReader.scala:223)
+	at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:211)
+	at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:178)
+	at org.apache.spark.ml.recommendation.ALSModel$ALSModelReader.load(ALS.scala:527)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.GatewayConnection.run(GatewayConnection.java:238)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/ranking_v4.py", line 59, in <module>
+    main(spark, txt)
+  File "/home/jm7955/final-project-the_grind/ranking_v4.py", line 20, in main
+    model = ALSModel.load('hdfs:/user/jm7955/' + args.model)
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/ml/util.py", line 362, in load
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/ml/util.py", line 300, in load
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1257, in __call__
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/sql/utils.py", line 69, in deco
+pyspark.sql.utils.AnalysisException: 'Unable to infer schema for Parquet. It must be specified manually.;'
+distinct_users
+finished writing in 36 seconds
+labels
+finished writing in 50 seconds
+predictions
+finished writing in 50 seconds
+predictionsAndLabels
+finished writing in 61 seconds
+finished writing in 760 seconds
+872.9325652234256
+distinct_users
+finished writing in 42 seconds
+labels
+finished writing in 50 seconds
+predictions
+finished writing in 51 seconds
+predictionsAndLabels
+finished writing in 59 seconds
+distinct_users
+finished writing in 102 seconds
+labels
+finished writing in 108 seconds
+predictions
+finished writing in 109 seconds
+predictionsAndLabels
+finished writing in 119 seconds
+finished writing in 1608 seconds
+1744.134077405557
+Traceback (most recent call last):
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/sql/utils.py", line 63, in deco
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/protocol.py", line 328, in get_return_value
+py4j.protocol.Py4JJavaError: An error occurred while calling o44.load.
+: org.apache.spark.sql.AnalysisException: Unable to infer schema for Parquet. It must be specified manually.;
+	at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$7.apply(DataSource.scala:185)
+	at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$7.apply(DataSource.scala:185)
+	at scala.Option.getOrElse(Option.scala:121)
+	at org.apache.spark.sql.execution.datasources.DataSource.getOrInferFileFormatSchema(DataSource.scala:184)
+	at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:373)
+	at org.apache.spark.sql.DataFrameReader.loadV1Source(DataFrameReader.scala:223)
+	at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:211)
+	at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:178)
+	at org.apache.spark.ml.recommendation.ALSModel$ALSModelReader.load(ALS.scala:527)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.GatewayConnection.run(GatewayConnection.java:238)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/ranking_v4.py", line 59, in <module>
+    main(spark, txt)
+  File "/home/jm7955/final-project-the_grind/ranking_v4.py", line 20, in main
+    model = ALSModel.load('hdfs:/user/jm7955/' + args.model)
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/ml/util.py", line 362, in load
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/ml/util.py", line 300, in load
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1257, in __call__
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/sql/utils.py", line 69, in deco
+pyspark.sql.utils.AnalysisException: 'Unable to infer schema for Parquet. It must be specified manually.;'
+distinct_users
+finished writing in 30 seconds
+labels
+finished writing in 41 seconds
+predictions
+finished writing in 42 seconds
+predictionsAndLabels
+finished writing in 50 seconds
+finished writing in 923 seconds
+1026.2065040282905
+distinct_users
+finished writing in 38 seconds
+labels
+finished writing in 53 seconds
+predictions
+finished writing in 54 seconds
+predictionsAndLabels
+finished writing in 63 seconds
+finished writing in 940 seconds
+1041.1020307131112
+distinct_users
+finished writing in 32 seconds
+labels
+finished writing in 39 seconds
+predictions
+finished writing in 40 seconds
+predictionsAndLabels
+finished writing in 49 seconds
+distinct_users
+finished writing in 29 seconds
+labels
+finished writing in 37 seconds
+predictions
+finished writing in 38 seconds
+predictionsAndLabels
+finished writing in 47 seconds
+finished writing in 876 seconds
+985.7444286830723
+distinct_users
+finished writing in 55 seconds
+labels
+finished writing in 69 seconds
+predictions
+finished writing in 70 seconds
+predictionsAndLabels
+finished writing in 77 seconds
+finished writing in 2219 seconds
+2541.7008252739906

@@ -1,0 +1,23 @@
+  File "/home/jm7955/final-project-the_grind/evaluate.py", line 23
+    predictions = model.transform(val_df)
+              ^
+SyntaxError: invalid syntax
+full
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/evaluate.py", line 36, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/evaluate.py", line 19, in main
+    print(args.full)
+NameError: name 'args' is not defined
+full
+True
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/evaluate.py", line 37, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/evaluate.py", line 23, in main
+    val_df = spark.read.parquet('hdfs:/user/%s/%s.parquet' % (user, suffix))
+NameError: name 'user' is not defined
+full
+True
+Root-mean-square error = nan
+208.84028493985534

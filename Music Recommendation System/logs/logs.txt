@@ -1,0 +1,764 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 3578789888 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid2624.log
+usage: train.py [-h] [--user USER] [--alpha ALPHA] [--use_full USE_FULL]
+train.py: error: unrecognized arguments: --user_full True
+usage: train.py [-h] [--user USER] [--alpha ALPHA] [--use_full USE_FULL]
+train.py: error: unrecognized arguments: --user_full False
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 61, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 27, in main
+    if args.use_full:   
+AttributeError: 'Namespace' object has no attribute 'use_full'
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 61, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 34, in main
+    write_prefix = 'hdfs:/user/%s/als_%s_' % (user, writestr)
+NameError: name 'user' is not defined
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 18, in already_trained
+    rdd = sc.textFile(path)
+NameError: name 'sc' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 61, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 44, in main
+    if already_trained(writefile):
+  File "/home/jm7955/final-project-the_grind/train.py", line 21, in already_trained
+    except Py4JJavaError as e:
+NameError: name 'Py4JJavaError' is not defined
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 62, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 45, in main
+    if already_trained(writefile):
+  File "/home/jm7955/final-project-the_grind/train.py", line 19, in already_trained
+    rdd = sc.textFile(path)
+NameError: name 'sc' is not defined
+  File "/home/jm7955/final-project-the_grind/train.py", line 64
+    sc = SparkContext(conf = conf)
+     ^
+SyntaxError: invalid syntax
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 64, in <module>
+    sc = SparkContext(conf = conf)
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/context.py", line 115, in __init__
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/context.py", line 314, in _ensure_initialized
+ValueError: Cannot run multiple SparkContexts at once; existing SparkContext(app=train, master=yarn) created by getOrCreate at /home/jm7955/final-project-the_grind/train.py:60 
+starting with alpha=30, rank=1, reg=1.0
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 62, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 50, in main
+    als = ALS(regParam=reg, rank=rank, alpha=alpha, ratingCol="count")
+NameError: name 'alpha' is not defined
+usage: train.py [-h] [--user USER] [--alpha ALPHA] [--full FULL]
+train.py: error: unrecognized arguments: --user_full True
+starting with alpha=40, rank=0, reg=1.0
+  File "/home/jm7955/final-project-the_grind/train.py", line 18
+    parser.add_argument('--all_or_one', , choices=['all', 'one'])
+                                        ^
+SyntaxError: invalid syntax
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 72, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 63, in main
+    train(train_df, *params)
+  File "/home/jm7955/final-project-the_grind/train.py", line 29, in train
+    if already_trained(spark, writefile):
+UnboundLocalError: local variable 'writefile' referenced before assignment
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 72, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 63, in main
+    train(train_df, *params)
+  File "/home/jm7955/final-project-the_grind/train.py", line 29, in train
+    writefile = write_prefix + 'rank_%d_reg_%s_alpha_%s' % (rank, reg, args.alpha)
+NameError: name 'write_prefix' is not defined
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 88, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 79, in main
+    train_all(readFile, write_prefix)
+NameError: name 'readFile' is not defined
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 1410859008 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid133540.log
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 1410859008 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid134077.log
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 1410859008 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid137042.log
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 705167360 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid138662.log
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 88, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 77, in main
+    train_one(readFile, write_prefix)
+NameError: name 'readFile' is not defined
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 88, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 77, in main
+    train_one(read_file, write_prefix)
+  File "/home/jm7955/final-project-the_grind/train.py", line 46, in train_one
+    writefile = writefile(write_prefix, args.rank, args.reg)
+UnboundLocalError: local variable 'writefile' referenced before assignment
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 88, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 77, in main
+    train_one(read_file, write_prefix)
+  File "/home/jm7955/final-project-the_grind/train.py", line 46, in train_one
+    writefile = getwritefile(write_prefix, args.rank, args.reg)
+NameError: name 'args' is not defined
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 88, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 77, in main
+    train_one(read_file, write_prefix, args)
+  File "/home/jm7955/final-project-the_grind/train.py", line 46, in train_one
+    writefile = getwritefile(write_prefix, args.rank, args.reg)
+  File "/home/jm7955/final-project-the_grind/train.py", line 21, in getwritefile
+    writefile = write_prefix + 'rank_%d_reg_%s_alpha_%s' % (rank, reg, args.alpha)
+NameError: name 'args' is not defined
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 88, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 77, in main
+    train_one(read_file, write_prefix, args)
+  File "/home/jm7955/final-project-the_grind/train.py", line 46, in train_one
+    writefile = getwritefile(write_prefix, args.rank, args.reg, args.alpha)
+TypeError: getwritefile() takes 3 positional arguments but 4 were given
+training for hdfs:/user/jm7955/als_full_rank_10_reg_0.1_alpha_1.0
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 88, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 77, in main
+    train_one(read_file, write_prefix, args)
+  File "/home/jm7955/final-project-the_grind/train.py", line 50, in train_one
+    train(get_train_df(read_file), args.rank, args.reg, args.alpha)
+  File "/home/jm7955/final-project-the_grind/train.py", line 39, in train
+    als = ALS(regParam=reg, rank=rank, alpha=args.alpha, ratingCol="count")
+NameError: name 'args' is not defined
+training for hdfs:/user/jm7955/als_full_rank_10_reg_0.1_alpha_1.0
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 692584448 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid32980.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_10_reg_0.01_alpha_1.0
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_10_reg_1.0_alpha_1.0
+6
+finished training in 480 seconds
+finished training and writing in 498 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_10_reg_0.001_alpha_1.0
+6
+finished training in 412 seconds
+finished training and writing in 509 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_10_reg_0.01_alpha_1.0
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_10_reg_1.0_alpha_1.0
+6
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 93, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 81, in main
+    train_one(read_file, write_prefix, args)
+  File "/home/jm7955/final-project-the_grind/train.py", line 54, in train_one
+    train(get_train_df(read_file), writefile, args.rank, args.reg, args.alpha)
+  File "/home/jm7955/final-project-the_grind/train.py", line 42, in train
+    model = als.fit(df)
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/ml/base.py", line 132, in fit
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/ml/wrapper.py", line 295, in _fit
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/ml/wrapper.py", line 292, in _fit_java
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1255, in __call__
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 985, in send_command
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1152, in send_command
+  File "/share/apps/python/3.6.5/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/context.py", line 252, in signal_handler
+KeyboardInterrupt
+1
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 90, in <module>
+    spark = SparkSession.builder.appName('train').getOrCreate()
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/sql/session.py", line 173, in getOrCreate
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/context.py", line 349, in getOrCreate
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/context.py", line 118, in __init__
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/context.py", line 180, in _do_init
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/context.py", line 288, in _initialize_context
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1523, in __call__
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 985, in send_command
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1152, in send_command
+  File "/share/apps/python/3.6.5/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 6, in <module>
+    from py4j.protocol import Py4JJavaError
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 656, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 626, in _load_backward_compatible
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/protocol.py", line 21, in <module>
+  File "/share/apps/python/3.6.5/lib/python3.6/base64.py", line 9, in <module>
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_10_reg_0.01_alpha_1.0
+6
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 1973420032 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid120390.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_10_reg_1.0_alpha_1.0
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_10_reg_0.1_alpha_1.0
+6
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 93, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 81, in main
+    train_one(read_file, write_prefix, args)
+  File "/home/jm7955/final-project-the_grind/train.py", line 54, in train_one
+    train(get_train_df(read_file), writefile, args.rank, args.reg, args.alpha)
+  File "/home/jm7955/final-project-the_grind/train.py", line 42, in train
+    model = als.fit(df)
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/ml/base.py", line 132, in fit
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/ml/wrapper.py", line 295, in _fit
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/ml/wrapper.py", line 292, in _fit_java
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1255, in __call__
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 985, in send_command
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1152, in send_command
+  File "/share/apps/python/3.6.5/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/context.py", line 252, in signal_handler
+KeyboardInterrupt
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_20_reg_0.01_alpha_1.0
+6
+1
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 334495744 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid134522.log
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 1410859008 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid135594.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_12_reg_0.01_alpha_1.0
+6
+finished training in 433 seconds
+finished training and writing in 450 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_12_reg_1.0_alpha_1.0
+6
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2458386432 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid162509.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_12_reg_0.1_alpha_1.0
+6
+finished training in 401 seconds
+finished training and writing in 419 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_12_reg_0.001_alpha_1.0
+6
+finished training in 368 seconds
+finished training and writing in 384 seconds
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2419064832 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid178453.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_8_reg_0.01_alpha_1.0
+6
+finished training in 314 seconds
+finished training and writing in 329 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_8_reg_1.0_alpha_1.0
+6
+finished training in 314 seconds
+finished training and writing in 329 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_8_reg_0.1_alpha_1.0
+6
+finished training in 368 seconds
+finished training and writing in 385 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_8_reg_0.001_alpha_1.0
+6
+finished training in 503 seconds
+finished training and writing in 523 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_12_reg_0.01_alpha_1.0
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_12_reg_1.0_alpha_1.0
+6
+finished training in 377 seconds
+finished training and writing in 391 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_12_reg_0.1_alpha_1.0
+6
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2273837056 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid60678.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_12_reg_0.001_alpha_1.0
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_8_reg_0.01_alpha_1.0
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_8_reg_1.0_alpha_1.0
+6
+finished training in 492 seconds
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 93, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 81, in main
+    train_one(read_file, write_prefix, args)
+  File "/home/jm7955/final-project-the_grind/train.py", line 54, in train_one
+    train(get_train_df(read_file), writefile, args.rank, args.reg, args.alpha)
+  File "/home/jm7955/final-project-the_grind/train.py", line 44, in train
+    model.save(writefile)
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/ml/util.py", line 244, in save
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/ml/util.py", line 183, in save
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1257, in __call__
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/sql/utils.py", line 63, in deco
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/protocol.py", line 328, in get_return_value
+py4j.protocol.Py4JJavaError: An error occurred while calling o145.save.
+: java.io.IOException: Path hdfs:/user/jm7955/als_full_rank_8_reg_1.0_alpha_1.0 already exists. To overwrite it, please use write.overwrite().save(path) for Scala and use write().overwrite().save(path) for Java and Python.
+	at org.apache.spark.ml.util.FileSystemOverwrite.handleOverwrite(ReadWrite.scala:702)
+	at org.apache.spark.ml.util.MLWriter.save(ReadWrite.scala:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.GatewayConnection.run(GatewayConnection.java:238)
+	at java.lang.Thread.run(Thread.java:748)
+
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_8_reg_0.1_alpha_1.0
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_8_reg_0.001_alpha_1.0
+6
+finished training in 318 seconds
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 93, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 81, in main
+    train_one(read_file, write_prefix, args)
+  File "/home/jm7955/final-project-the_grind/train.py", line 54, in train_one
+    train(get_train_df(read_file), writefile, args.rank, args.reg, args.alpha)
+  File "/home/jm7955/final-project-the_grind/train.py", line 44, in train
+    model.save(writefile)
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/ml/util.py", line 244, in save
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/ml/util.py", line 183, in save
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1257, in __call__
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/sql/utils.py", line 63, in deco
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/protocol.py", line 328, in get_return_value
+py4j.protocol.Py4JJavaError: An error occurred while calling o145.save.
+: java.io.IOException: Path hdfs:/user/jm7955/als_full_rank_8_reg_0.001_alpha_1.0 already exists. To overwrite it, please use write.overwrite().save(path) for Scala and use write().overwrite().save(path) for Java and Python.
+	at org.apache.spark.ml.util.FileSystemOverwrite.handleOverwrite(ReadWrite.scala:702)
+	at org.apache.spark.ml.util.MLWriter.save(ReadWrite.scala:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.GatewayConnection.run(GatewayConnection.java:238)
+	at java.lang.Thread.run(Thread.java:748)
+
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_12_reg_0.01_alpha_1.5
+6
+finished training in 270 seconds
+finished training and writing in 284 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_12_reg_1.0_alpha_1.5
+6
+finished training in 447 seconds
+finished training and writing in 466 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_12_reg_0.1_alpha_1.5
+6
+finished training in 339 seconds
+finished training and writing in 374 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_12_reg_0.001_alpha_1.5
+6
+finished training in 410 seconds
+finished training and writing in 426 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_8_reg_0.01_alpha_1.5
+6
+finished training in 352 seconds
+finished training and writing in 368 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_8_reg_1.0_alpha_1.5
+6
+finished training in 676 seconds
+finished training and writing in 705 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_8_reg_0.1_alpha_1.5
+6
+finished training in 317 seconds
+finished training and writing in 332 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_8_reg_0.001_alpha_1.5
+6
+finished training in 361 seconds
+finished training and writing in 378 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_10_reg_0.01_alpha_1.5
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_10_reg_1.0_alpha_1.5
+6
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 1004535808 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid48332.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_10_reg_0.1_alpha_1.5
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_10_reg_0.001_alpha_1.5
+6
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 716177408 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid75791.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_12_reg_0.01_alpha_0.5
+6
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 632291328 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid77764.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_12_reg_1.0_alpha_0.5
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_12_reg_0.1_alpha_0.5
+6
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 732430336 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid97247.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_12_reg_0.001_alpha_0.5
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_8_reg_0.01_alpha_0.5
+6
+finished training in 527 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_8_reg_1.0_alpha_0.5
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_8_reg_0.1_alpha_0.5
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_8_reg_0.001_alpha_0.5
+6
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 683147264 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid135744.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_10_reg_0.01_alpha_0.5
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_10_reg_1.0_alpha_0.5
+6
+finished training in 265 seconds
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2623537152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid149993.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_10_reg_0.1_alpha_0.5
+6
+finished training in 348 seconds
+finished training and writing in 363 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_10_reg_0.001_alpha_0.5
+6
+finished training in 565 seconds
+finished training and writing in 585 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_20_reg_0.01_alpha_0.5
+6
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2390753280 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid180716.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_20_reg_1.0_alpha_0.5
+6
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 1836580864 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid188402.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_20_reg_0.1_alpha_0.5
+6
+finished training in 510 seconds
+finished training and writing in 528 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_20_reg_0.001_alpha_0.5
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_20_reg_0.01_alpha_1.5
+6
+finished training in 720 seconds
+finished training and writing in 743 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_20_reg_1.0_alpha_1.5
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_20_reg_0.1_alpha_1.5
+6
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2206728192 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid53475.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_20_reg_0.001_alpha_1.5
+6
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2577924096 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid61813.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_20_reg_0.01_alpha_1.0
+6
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 1822425088 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /home/jm7955/final-project-the_grind/hs_err_pid76239.log
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_20_reg_1.0_alpha_1.0
+6
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_20_reg_0.1_alpha_1.0
+6
+finished training in 504 seconds
+finished training and writing in 524 seconds
+1
+2
+3
+training for hdfs:/user/jm7955/als_full_rank_20_reg_0.001_alpha_1.0
+6
+finished training in 463 seconds
+Traceback (most recent call last):
+  File "/home/jm7955/final-project-the_grind/train.py", line 93, in <module>
+    main(spark)
+  File "/home/jm7955/final-project-the_grind/train.py", line 81, in main
+    train_one(read_file, write_prefix, args)
+  File "/home/jm7955/final-project-the_grind/train.py", line 54, in train_one
+    train(get_train_df(read_file), writefile, args.rank, args.reg, args.alpha)
+  File "/home/jm7955/final-project-the_grind/train.py", line 44, in train
+    model.save(writefile)
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/ml/util.py", line 244, in save
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/ml/util.py", line 183, in save
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1257, in __call__
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/sql/utils.py", line 63, in deco
+  File "/share/apps/spark/spark-2.4.0-bin-hadoop2.6/python/lib/py4j-0.10.7-src.zip/py4j/protocol.py", line 328, in get_return_value
+py4j.protocol.Py4JJavaError: An error occurred while calling o145.save.
+: java.io.IOException: Path hdfs:/user/jm7955/als_full_rank_20_reg_0.001_alpha_1.0 already exists. To overwrite it, please use write.overwrite().save(path) for Scala and use write().overwrite().save(path) for Java and Python.
+	at org.apache.spark.ml.util.FileSystemOverwrite.handleOverwrite(ReadWrite.scala:702)
+	at org.apache.spark.ml.util.MLWriter.save(ReadWrite.scala:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.GatewayConnection.run(GatewayConnection.java:238)
+	at java.lang.Thread.run(Thread.java:748)
+
+  File "/home/jm7955/final-project-the_grind/train.py", line 64
+    writefile, suffix = getwritefile(write_prefix, *params, args.alpha)
+SyntaxError: only named arguments may follow *expression
